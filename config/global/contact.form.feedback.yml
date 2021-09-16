@@ -1,0 +1,14 @@
+uuid: 6fef5e83-00ee-4c98-92c2-30b102c89e03
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: vymHlgJy26BuI5GGj9-IXjwR3dRC5C0tij4BpWJnoqw
+id: feedback
+label: 'Website feedback'
+recipients:
+  - bansalashish630@gmail.com
+reply: ''
+weight: 0
+message: 'Your message has been sent.'
+redirect: ''

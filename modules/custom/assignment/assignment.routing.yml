@@ -1,0 +1,6 @@
+assignment.page:
+  path: '/page_json/{apikey}/{nid}'
+  defaults:
+    _controller: '\Drupal\assignment\Controller\PageJson::jsonPage'
+  requirements:
+      _permission: 'access content'

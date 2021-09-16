@@ -1,0 +1,42 @@
+<?php 
+
+function assignment_form_system_site_information_settings_alter(&$form, $form_state, $form_id)
+{
+
+    // Fetching current siteapkey value
+    $site_config = \Drupal::config('system.site')->get('siteapikey');
+    
+    // Creating field to enter Site Api Key on Site Information Form
+    $form['api_details'] = [
+      '#type' => 'details',
+      '#title' => t('Site API Key'),
+      '#open' => FALSE,
+
+    ];
+    $form['api_details']['siteapikey'] = [
+      '#type' => 'textfield',
+      '#title' => t('Site API Key'),
+      '#default_value' => $site_config ?: 'No API Key yet',
+      '#description' => t('Enter API Key'),
+    ];
+
+    // Updating "Save configuration" to "Update Configuration"
+    if($site_config != null){
+      $form['actions']['submit']['#value'] = t('Update configuration');
+    }
+
+    // Handle form submission
+    $form['#submit'][] = 'submit_form';
+}
+function submit_form($form, &$form_state)
+{
+      \Drupal::configFactory()->getEditable('system.site')
+            // Set the submitted configuration setting
+            ->set('siteapikey', $form_state->getValue('siteapikey'))
+            ->save();
+
+    // Display message that Site API Key has been set
+    drupal_set_message("Site API Key has been saved with value " . $form_state->getValue('siteapikey'));
+}
+
+?>

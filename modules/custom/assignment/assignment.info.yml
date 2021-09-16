@@ -1,0 +1,6 @@
+name: 'Assignment Module'
+description: 'Custom module assignment by Axelerant'
+type: 'module'
+package: 'Custom'
+core_version_requirement: ^8.8 || ^9
+version: '8.x'
